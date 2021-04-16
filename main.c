@@ -88,6 +88,3 @@ struct calendar* add_reservation(struct reservation* r, struct calendar* cal) {
     return cal;
 
 }
-
-void
-
