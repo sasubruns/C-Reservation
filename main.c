@@ -88,3 +88,14 @@ struct calendar* add_reservation(struct reservation* r, struct calendar* cal) {
     return cal;
 
 }
+
+void print_reservations(struct calendar* cal) {
+
+    for (int i = 0; i < cal->size; i++) {
+
+        struct reservation r = *(cal->ptr + i);
+        printf("%s %d.%d klo %d", r.description, r.day, r.month, r.hour);
+
+    }
+
+}
