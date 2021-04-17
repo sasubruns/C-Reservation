@@ -23,3 +23,5 @@ void save_reservations(char* filename, struct calendar* cal);
 struct calendar* load_reservations(char* filename);
 
 void print_reservations(struct calendar* cal);
+
+void print_reservation(int month, int day, int hour, struct calendar* cal);

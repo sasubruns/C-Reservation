@@ -89,12 +89,39 @@ struct calendar* add_reservation(struct reservation* r, struct calendar* cal) {
 
 }
 
+// Print all reservations in format "DSC DAY.MONTH. klo HOUR".
+// Inefficient.
+
 void print_reservations(struct calendar* cal) {
+
+    for (int m = 1; m < 13; m++) {
+
+        for (int d = 1; d < 32; d++) {
+
+            for (int h = 1; h < 25; h++) {
+
+                print_reservation(m, d, h, cal);
+
+            }
+
+        }
+
+    }
+
+}
+
+// Print a reservation with the given parameters if it exists in the calendar.
+
+void print_reservation(int month, int day, int hour, struct calendar* cal) {
 
     for (int i = 0; i < cal->size; i++) {
 
         struct reservation r = *(cal->ptr + i);
-        printf("%s %d.%d klo %d", r.description, r.day, r.month, r.hour);
+        if (r.month == month && r.day == day && r.hour == hour) {
+
+            printf("%s %d.%d klo %d", r.description, r.day, r.month, r.hour);
+
+        }
 
     }
 
