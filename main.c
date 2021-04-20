@@ -89,6 +89,23 @@ struct calendar* add_reservation(struct reservation* r, struct calendar* cal) {
 
 }
 
+// Save reservations in a file
+
+void save_reservations(char* filename, struct calendar* cal) {
+
+    FILE* f = fopen(filename, "wb");
+    for (int i = 0; i < cal->size; i++) {
+        struct reservation* r = cal->ptr + i;
+        fwrite(&r->month, sizeof(int), 1, f);
+        fwrite(&r->day, sizeof(int), 1, f);
+        fwrite(&r->hour, sizeof(int), 1, f);
+        fputs(r->description, f);
+        int eol = 200;
+        fwrite(eol, sizeof(int), 1, f);
+    }
+    fclose(f);
+}
+
 // Print all reservations in format "DSC DAY.MONTH. klo HOUR".
 // Inefficient.
 
