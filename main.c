@@ -94,6 +94,11 @@ struct calendar* add_reservation(struct reservation* r, struct calendar* cal) {
 void save_reservations(char* filename, struct calendar* cal) {
 
     FILE* f = fopen(filename, "wb");
+
+    if (f == NULL) {
+        return NULL;
+    }
+
     for (int i = 0; i < cal->size; i++) {
         struct reservation* r = cal->ptr + i;
         fwrite(&r->month, sizeof(int), 1, f);
@@ -104,6 +109,18 @@ void save_reservations(char* filename, struct calendar* cal) {
         fwrite(eol, sizeof(int), 1, f);
     }
     fclose(f);
+}
+
+// Load reservations from a file
+
+struct calendar* load_reservations(char* filename) {
+
+    FILE *f = fopen(filename, "rb");
+
+    if (f == NULL) {
+        return NULL;
+    }
+
 }
 
 // Print all reservations in format "DSC DAY.MONTH. klo HOUR".
@@ -140,6 +157,68 @@ void print_reservation(int month, int day, int hour, struct calendar* cal) {
 
         }
 
+    }
+
+}
+
+int main() {
+
+    struct calendar* cal;
+
+    printf("Tervetuloa ajanvaraukseen.\n");
+
+    while (1) {
+        printf("Syötä komento tai syötä H saadaksesi apua.\n");
+
+        char command;
+        char* desc;
+        int n1;
+        int n2;
+        int n3;
+
+        int read = scanf("%c %s %d %d %d", command, desc, n1, n2, n3);
+        if (read == 0) {
+            printf("Komennon syöttäminen epäonnistui. Yritä uudelleen.\n");
+            break;
+        }
+
+        switch (command)
+        {
+        case 'A':
+            break;
+
+        case 'D':
+            break;
+
+        case 'L':
+            break;
+
+        case 'W':
+            break;
+
+        case 'O':
+            break;
+
+        case 'H':
+            printf("Kirjoita komentoa vastaava kirjain ja sen jälkeen komentoon liittyvät parametrit seuraavasti:");
+            printf("A kuvaus kuukausi päivä tunti - Lisää merkintä kalenteriin");
+            printf("D kuukausi päivä tunti - Poista merkintä kalenterista");
+            printf("L - Tulosta kalenteri");
+            printf("W tiedostonimi - Tallenna kalenteri");
+            printf("O tiedostonimi - Lataa kalenteri");
+            printf("Q - Poistu ohjelmasta");
+            printf("H - Tulosta tietoa kommennoista");
+            break;
+
+        case 'Q':
+            printf("Suljetaan...");
+            free(cal);
+            break;
+        
+        default:
+            printf("Komento ei ole validi. Yritä uudelleen.");
+            break;
+        }
     }
 
 }
