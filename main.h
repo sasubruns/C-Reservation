@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 struct reservation {
     int month;
     int day;
@@ -16,7 +18,7 @@ struct calendar* del_reservation(int month, int day, int hour, struct calendar* 
 
 struct calendar* remove_reservation(int i, struct calendar* cal);
 
-struct calendar* add_reservation(struct reservation* r, struct calendar* cal);
+struct calendar* add_reservation(struct reservation* r, struct calendar* cal, int verbose);
 
 void save_reservations(char* filename, struct calendar* cal);
 
